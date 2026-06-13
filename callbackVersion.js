@@ -7,13 +7,19 @@ doSummerChores(name);
 
 
 function doSummerChores(name){
-    setTimeout(mowYard, 2000, name, choreStatus);
+    setTimeout(mowYard, 2000, name, (result) => {
+        if(result){
+            console.log(`${name} has finished his chores.`);
+        }else{
+            console.log(`${name} has fallen asleep.`);
+        }
+    });
 }
 
 function mowYard(name, callback){
     console.log(`${name} mowed the yard.`);
-    if(Math.random() > 0.1){
-        setTimeout(weedEat, 1500, name, choreStatus);
+    if(Math.random() > 0.35){
+        setTimeout(weedEat, 1500, name, callback);
     }
     else{
         callback(false);
@@ -21,8 +27,8 @@ function mowYard(name, callback){
 }
 function weedEat(name, callback){
     console.log(`${name} finished using the weed eater.`);
-    if(Math.random() > 0.1){
-        setTimeout(trimHedges, 1000, name, choreStatus);
+    if(Math.random() > 0.45){
+        setTimeout(trimHedges, 1000, name, callback);
     }
     else{
         callback(false);    
@@ -30,8 +36,8 @@ function weedEat(name, callback){
 }
 function trimHedges(name, callback){
     console.log(`${name} finished trimming the hedges.`);
-    if(Math.random() > 0.1){
-        setTimeout(collectWood, 2500, name, choreStatus);
+    if(Math.random() > 0.7){
+        setTimeout(collectWood, 2500, name, callback);
     }
     else{
         callback(false);
@@ -39,8 +45,8 @@ function trimHedges(name, callback){
 }
 function collectWood(name, callback){
     console.log(`${name} finished collecting wood.`);
-    if(Math.random() > 0.1){
-        setTimeout(waterGarden, 500, name, choreStatus);
+    if(Math.random() > 0.75){
+        setTimeout(waterGarden, 500, name, callback);
     }
     else{
         callback(false);
@@ -53,13 +59,5 @@ function waterGarden(name, callback){
     }
     else{
         callback(false);
-    }
-}
-function choreStatus(complete){
-    if (complete){
-        console.log("Benjamin has finished his chores.");
-    }
-    else{
-        console.log("Benjamin has fallen asleep.");
     }
 }
